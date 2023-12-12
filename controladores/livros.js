@@ -33,12 +33,11 @@ function get_livros_id (req, res) {
     };
 };
 
-function post_livros  (req, res) {
+function post_livros (req, res) {
     try {
         let livro_novo = req.body; //! O corpo da requisição que deve trazer com ele algum ou algums elemento(s);
-        let corpo = req.body;
 
-        if (corpo.id && corpo.nome && corpo.descricao && corpo.img && corpo.autor && corpo.editora ) {
+        if (livro_novo.id && livro_novo.nome && livro_novo.descricao && livro_novo.img && livro_novo.autor && livro_novo.editora ) {
             add_livro(livro_novo);
             res.status(201);
             res.redirect("http://http.cat/201"); //! Created;

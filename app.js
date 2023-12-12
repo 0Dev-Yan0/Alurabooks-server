@@ -2,12 +2,17 @@
 
 const express =  require("express");
 const aplicativo = express();
+const cors = require("cors");
 
 const porta = 8000;
 const rota_livros = require("./rotas/livros"); //! Aqui pegamos a exportação feita do módulo de rota pelo mesmo tipo de configuração dele;
+const rota_favoritos = require("./rotas/favoritos");
 
 aplicativo.use(express.json());
+aplicativo.use(cors({origin: "*"}));
+aplicativo.use(cors());
 
+aplicativo.use("/favoritos", rota_favoritos);
 aplicativo.use("/livros", rota_livros); //! Sempre que ele usar a rota "livros" na URI devemos encaminhar o "rota_livros" para o front;
 
 aplicativo.get("/", (req, res) => {
